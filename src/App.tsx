@@ -1,87 +1,64 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import AppWrapper from "./components/AppWrapper";
+import Content from "./components/Content";
 import Controls from "./components/Controls";
-import Field from "./components/Field";
+
+import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import { Step } from "./types";
+import FirstStep from "./components/steps/First";
+import SecondStep from "./components/steps/Second";
 
 function App() {
-  const [step, setStep] = useState<Step>(2);
-  const [values, setValues] = useState<any>(null);
-  const nameRef = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const phoneRef = useRef<HTMLInputElement>(null);
+  const [step, setStep] = useState(2);
+  // const [values, setValues] = useState<any>(null);
 
   const handleNext = () => {
-    if (!nameRef.current || !emailRef.current || !phoneRef.current) {
-      return;
-    }
+    // if (!nameRef.current || !emailRef.current || !phoneRef.current) {
+    //   return;
+    // }
 
-    const values = {
-      name: nameRef.current.value,
-      email: emailRef.current.value,
-      phone: phoneRef.current.value,
-    };
+    // const values = {
+    //   name: nameRef.current.value,
+    //   email: emailRef.current.value,
+    //   phone: phoneRef.current.value,
+    // };
 
-    nameRef.current.value = "";
-    emailRef.current.value = "";
-    phoneRef.current.value = "";
+    // nameRef.current.value = "";
+    // emailRef.current.value = "";
+    // phoneRef.current.value = "";
 
-    setValues(values);
-    setStep(2);
+    // setValues(values);
+    setStep((prevStep) => prevStep + 1);
   };
 
-  const handleGoBack = () => setStep(1);
+  const handleGoBack = () => setStep((prevStep) => prevStep - 1);
 
   const isFirstStep = step === 1;
+  const isLastStep = step === 4;
 
   return (
     <AppWrapper>
       <Sidebar step={step} />
-      <div className="content__wrapper">
-        <div className="content">
-          <div className="title">Personal info</div>
-          <div className="subtitle">
-            Please provide your name, email address, and phone number.
+      <Content
+        controls={
+          <Controls
+            isLastStep={isLastStep}
+            isFirstStep={isFirstStep}
+            onBack={handleGoBack}
+            onNext={handleNext}
+          />
+        }
+      >
+        <div className="content__wrapper">
+          <div className="content">
+            <Header step={step} />
+            {isFirstStep && <FirstStep />}
+            {step === 2 && <SecondStep />}
+            {step === 3 && <div>step 3</div>}
+            {isLastStep && <div>step 4</div>}
           </div>
-          {isFirstStep && (
-            <>
-              <Field name="Name">
-                <input
-                  className="input"
-                  id="name"
-                  placeholder="e.g. Stephen King"
-                  ref={nameRef}
-                />
-              </Field>
-              <Field name="Email Address">
-                <input
-                  className="input"
-                  id="email"
-                  placeholder="e.g. stephenking@lorem.com"
-                  ref={emailRef}
-                  type="email"
-                />
-              </Field>
-              <Field name="Phone Number">
-                <input
-                  className="input"
-                  id="phone"
-                  placeholder="e.g. +1 234 567 890"
-                  ref={phoneRef}
-                  type="tel"
-                />
-              </Field>
-            </>
-          )}
-          {step === 2 && <div>step 2</div>}
         </div>
-        <Controls
-          isFirstStep={isFirstStep}
-          onBack={handleGoBack}
-          onNext={handleNext}
-        />
-      </div>
+      </Content>
     </AppWrapper>
   );
 }
