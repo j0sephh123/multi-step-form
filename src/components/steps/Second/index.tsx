@@ -29,7 +29,6 @@ export default function SecondStep() {
   const toggleCheck = () => setIsChecked((c) => (c === 1 ? 0 : 1));
 
   console.log(checkedIndex);
-  
 
   return (
     <>
@@ -42,7 +41,11 @@ export default function SecondStep() {
           />
         ))}
       </div>
-      <Switch options={options} onClick={toggleCheck} checkedIndex={checkedIndex} />
+      <Switch
+        options={options}
+        onClick={toggleCheck}
+        checkedIndex={checkedIndex}
+      />
     </>
   );
 }

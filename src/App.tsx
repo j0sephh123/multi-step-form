@@ -6,11 +6,12 @@ import Controls from "./components/Controls";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import FirstStep from "./components/steps/First";
+import ForthStep from "./components/steps/Forth";
 import SecondStep from "./components/steps/Second";
 import ThirdStep from "./components/steps/Third";
 
 function App() {
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(4);
   // const [values, setValues] = useState<any>(null);
 
   const handleNext = () => {
@@ -57,8 +58,8 @@ function App() {
             <Header step={step} />
             {isFirstStep && <FirstStep />}
             {step === 2 && <SecondStep />}
-            {step === 3 && <ThirdStep/>}
-            {isLastStep && <div>step 4</div>}
+            {step === 3 && <ThirdStep />}
+            {isLastStep && <ForthStep />}
           </div>
         </div>
       </Content>

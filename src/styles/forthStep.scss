@@ -1,0 +1,71 @@
+.forthStep {
+  &__content {
+    background-color: #f8f9ff;
+    border-radius: var(--border-radius);
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+  &__plan {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &--label {
+      &-item {
+        color: #022959;
+        font-family: var(--medium);
+        padding-bottom: 8px;
+      }
+      &-change {
+        color: #9699aa;
+        font-size: 14px;
+        text-decoration: underline;
+      }
+    }
+    &--price {
+      &-value {
+        color: #022959;
+        font-family: var(--bold);
+        font-size: 20px;
+      }
+    }
+  }
+  &__line {
+    height: 1px;
+    background-color: #9699aa;
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+  &__addons {
+    &--item {
+      display: flex;
+      justify-content: space-between;
+      &:not(:last-of-type) {
+        padding-bottom: 16px;
+      }
+      &-label {
+        font-size: 14px;
+        color: #9699aa;
+      }
+      &-price {
+        font-size: 14px;
+      }
+    }
+  }
+  &__footer {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &--total {
+      font-size: 14px;
+      color: #9699aa;
+    }
+    &--price {
+      color: #483eff;
+      font-family: var(--bold);
+      font-size: 20px;
+    }
+  }
+}
