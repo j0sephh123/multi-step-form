@@ -21,6 +21,10 @@
         color: #9699aa;
         font-size: 14px;
         text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+          color: #483eff;
+        }
       }
     }
     &--price {

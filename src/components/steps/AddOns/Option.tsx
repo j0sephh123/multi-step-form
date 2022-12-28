@@ -6,9 +6,15 @@ type Props = {
   title: string;
   subtitle: string;
   onChange: () => void;
-}&PropsWithChildren;
+} & PropsWithChildren;
 
-export default function Option({ isActive, title, subtitle, onChange , children}: Props) {
+export default function Option({
+  isActive,
+  title,
+  subtitle,
+  onChange,
+  children,
+}: Props) {
   const [isClicked, setIsClicked] = useState(false);
   const onClick = () => {
     setIsClicked(true);
@@ -20,10 +26,7 @@ export default function Option({ isActive, title, subtitle, onChange , children}
   return (
     <div
       onClick={onClick}
-      className={`addOns__option ${
-        isActive ? "addOns__option--isActive" : ""
-      }`}
-      key={title}
+      className={`addOns__option ${isActive ? "addOns__option--isActive" : ""}`}
     >
       <Checkbox
         isClicked={isClicked}

@@ -16,6 +16,10 @@
     border-radius: var(--border-radius);
     cursor: pointer;
 
+    &:hover {
+      border-color: #483eff;
+    }
+
     &.isActive {
       background-color: #f8f9ff;
       border-color: #483eff;

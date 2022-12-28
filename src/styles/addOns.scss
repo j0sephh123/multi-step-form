@@ -15,6 +15,9 @@
     padding-right: 24px;
     padding-top: 16px;
     padding-bottom: 20px;
+    &:hover {
+      border-color: #483eff;
+    }
     &--info {
       flex: 1;
       &-title {

@@ -3,12 +3,11 @@ import { PropsWithChildren } from "react";
 type Props = {
   index: number;
   isActive: boolean;
-  onClick: () => void;
 } & PropsWithChildren;
 
-export default function Step({ onClick, children, isActive, index }: Props) {
+export default function Step({ children, isActive, index }: Props) {
   return (
-    <div onClick={onClick} className="step">
+    <div className="step">
       <div
         className={`step__number ${isActive ? "step__number--isАctive" : ""}`}
       >

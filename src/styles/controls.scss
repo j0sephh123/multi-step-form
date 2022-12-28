@@ -10,7 +10,14 @@
   &:hover {
     background-color: #164a8a;
   }
+  &.isConfirm {
+    background-color: #483eff;
+    &:hover {
+      background-color: #928cff;
+    }
+  }
 }
+
 .button__wrapper {
   margin-bottom: 16px;
   display: flex;
@@ -21,11 +28,11 @@
 .goBack {
   display: flex;
   align-items: center;
-  height: 49px;
   cursor: pointer;
   color: #9699aa;
   font-family: var(--medium);
   &:hover {
     text-decoration: underline;
+    color: #022959;
   }
 }

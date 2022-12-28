@@ -16,11 +16,9 @@ export default function Controls({
       <div onClick={onBack} className="goBack">
         {isFirstStep ? "" : "Go Back"}
       </div>
-      {!isLastStep && (
-        <button className="button" onClick={onNext}>
-          Next Step
-        </button>
-      )}
+      <button className={`button ${isLastStep ? "isConfirm" : ""}`} onClick={onNext}>
+        {isLastStep ? "Confirm" : "Next Step"}
+      </button>
     </div>
   );
 }

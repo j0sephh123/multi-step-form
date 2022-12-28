@@ -35,7 +35,13 @@ function App() {
     // phoneRef.current.value = "";
 
     // setValues(values);
-    setStep((prevStep) => prevStep + 1);
+    setStep((prevStep) => {
+      if (prevStep === 4) {
+        setIsSubmitted(true);
+        return prevStep;
+      }
+      return prevStep + 1;
+    });
   };
 
   const handleGoBack = () => setStep((prevStep) => prevStep - 1);
@@ -45,24 +51,30 @@ function App() {
   const isFirstStep = step === 1;
   const isLastStep = step === 4;
 
+  const handleChangeClick = () => setStep(2);
+
   return (
     <AppWrapper>
-      <Sidebar onClick={handleStepClick} step={step} />
+      <Sidebar step={step} />
       <Content
         controls={
-          <Controls
-            isLastStep={isLastStep}
-            isFirstStep={isFirstStep}
-            onBack={handleGoBack}
-            onNext={handleNext}
-          />
+          !isSubmitted && (
+            <Controls
+              isLastStep={isLastStep}
+              isFirstStep={isFirstStep}
+              onBack={handleGoBack}
+              onNext={handleNext}
+            />
+          )
         }
       >
         {!isSubmitted && <Header step={step} />}
         {isFirstStep && <YourInfo />}
         {step === 2 && <SelectYourPlan plan={plan} setPlan={setPlan} />}
         {step === 3 && <AddOns plan={plan} />}
-        {isLastStep && <Summary />}
+        {isLastStep && !isSubmitted && (
+          <Summary onChangeClick={handleChangeClick} />
+        )}
         {isSubmitted && <ThankYou />}
       </Content>
     </AppWrapper>

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Plan } from "../../../types";
-import Checkbox from "./Checkbox";
 import Option from "./Option";
 
 const options = [
