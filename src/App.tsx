@@ -8,6 +8,7 @@ import Sidebar from "./components/Sidebar";
 import FirstStep from "./components/steps/First";
 import ForthStep from "./components/steps/Forth";
 import SecondStep from "./components/steps/Second";
+import ThankYou from "./components/steps/ThankYou";
 import ThirdStep from "./components/steps/Third";
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
   const isFirstStep = step === 1;
   const isLastStep = step === 4;
 
+  const isSubmitted = true;
+
   return (
     <AppWrapper>
       <Sidebar onClick={handleStepClick} step={step} />
@@ -55,11 +58,12 @@ function App() {
       >
         <div className="content__wrapper">
           <div className="content">
-            <Header step={step} />
-            {isFirstStep && <FirstStep />}
+            {!isSubmitted && <Header step={step} />}
+            {/* {isFirstStep && <FirstStep />}
             {step === 2 && <SecondStep />}
             {step === 3 && <ThirdStep />}
-            {isLastStep && <ForthStep />}
+            {isLastStep && <ForthStep />} */}
+            {isSubmitted && <ThankYou/>}
           </div>
         </div>
       </Content>
