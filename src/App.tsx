@@ -33,12 +33,14 @@ function App() {
 
   const handleGoBack = () => setStep((prevStep) => prevStep - 1);
 
+  const handleStepClick = (clickedStep: number) => setStep(clickedStep);
+
   const isFirstStep = step === 1;
   const isLastStep = step === 4;
 
   return (
     <AppWrapper>
-      <Sidebar step={step} />
+      <Sidebar onClick={handleStepClick} step={step} />
       <Content
         controls={
           <Controls
