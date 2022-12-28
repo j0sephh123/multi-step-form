@@ -1,4 +1,4 @@
-.thirdStep {
+.addOns {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -30,11 +30,11 @@
     }
     &--price {
       font-size: 14px;
-      color: #483EFF;
+      color: #483eff;
     }
     &--isActive {
-      border-color: #483EFF;
-      background-color: #F8F9FF;
+      border-color: #483eff;
+      background-color: #f8f9ff;
     }
   }
 }

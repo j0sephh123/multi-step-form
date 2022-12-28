@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import Checkbox from "./Checkbox";
 
 type Props = {
@@ -6,9 +6,9 @@ type Props = {
   title: string;
   subtitle: string;
   onChange: () => void;
-};
+}&PropsWithChildren;
 
-export default function Option({ isActive, title, subtitle, onChange }: Props) {
+export default function Option({ isActive, title, subtitle, onChange , children}: Props) {
   const [isClicked, setIsClicked] = useState(false);
   const onClick = () => {
     setIsClicked(true);
@@ -20,8 +20,8 @@ export default function Option({ isActive, title, subtitle, onChange }: Props) {
   return (
     <div
       onClick={onClick}
-      className={`thirdStep__option ${
-        isActive ? "thirdStep__option--isActive" : ""
+      className={`addOns__option ${
+        isActive ? "addOns__option--isActive" : ""
       }`}
       key={title}
     >
@@ -31,11 +31,11 @@ export default function Option({ isActive, title, subtitle, onChange }: Props) {
         onChange={onChange}
         checked={isActive}
       />
-      <div className="thirdStep__option--info">
-        <div className="thirdStep__option--info-title">{title}</div>
-        <div className="thirdStep__option--info-subtitle">{subtitle}</div>
+      <div className="addOns__option--info">
+        <div className="addOns__option--info-title">{title}</div>
+        <div className="addOns__option--info-subtitle">{subtitle}</div>
       </div>
-      <div className="thirdStep__option--price">+$2/mo</div>
+      <div className="addOns__option--price">{children}</div>
     </div>
   );
 }

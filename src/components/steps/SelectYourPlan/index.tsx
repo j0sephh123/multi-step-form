@@ -21,6 +21,10 @@ const cards = [
   },
 ];
 
+const mapPlanPrice = {
+  Monthly: [9, 12, 15],
+  Yearly: [90, 120, 150],
+};
 
 type Props = {
   plan: Plan;
@@ -30,7 +34,8 @@ type Props = {
 export default function SelectYourPlan({ plan, setPlan }: Props) {
   const [selected, setSelected] = useState<number | null>(1);
 
-  const togglePlan = () => setPlan((c) => c === 'Monthly' ? 'Yearly' : 'Monthly');
+  const togglePlan = () =>
+    setPlan((c) => (c === "Monthly" ? "Yearly" : "Monthly"));
 
   return (
     <>
@@ -40,13 +45,12 @@ export default function SelectYourPlan({ plan, setPlan }: Props) {
             onClick={() => setSelected(index)}
             isActive={index === selected}
             {...card}
-          />
+          >
+            ${mapPlanPrice[plan][index]}/{plan === "Monthly" ? "mo" : "yr"}
+          </Card>
         ))}
       </div>
-      <Switch
-        onClick={togglePlan}
-        plan={plan}
-      />
+      <Switch onClick={togglePlan} plan={plan} />
     </>
   );
 }

@@ -4,18 +4,19 @@ import Content from "./components/wrappers/Content";
 import Controls from "./components/Controls";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import FirstStep from "./components/steps/YourInfo";
-import ForthStep from "./components/steps/Summary";
+import YourInfo from "./components/steps/YourInfo";
+import Summary from "./components/steps/Summary";
 import SelectYourPlan from "./components/steps/SelectYourPlan";
 import ThankYou from "./components/steps/ThankYou";
-import ThirdStep from "./components/steps/AddOns";
+import AddOns from "./components/steps/AddOns";
 import { Plan } from "./types";
 
 function App() {
   const [step, setStep] = useState(4);
-  const [plan, setPlan] = useState<Plan>('Monthly');
+  const [plan, setPlan] = useState<Plan>("Monthly");
+  const [isSubmitted, setIsSubmitted] = useState(false);
   console.log(plan);
-  
+
   // const [values, setValues] = useState<any>(null);
 
   const handleNext = () => {
@@ -44,8 +45,6 @@ function App() {
   const isFirstStep = step === 1;
   const isLastStep = step === 4;
 
-  const isSubmitted = false;
-
   return (
     <AppWrapper>
       <Sidebar onClick={handleStepClick} step={step} />
@@ -60,10 +59,10 @@ function App() {
         }
       >
         {!isSubmitted && <Header step={step} />}
-        {isFirstStep && <FirstStep />}
+        {isFirstStep && <YourInfo />}
         {step === 2 && <SelectYourPlan plan={plan} setPlan={setPlan} />}
-        {step === 3 && <ThirdStep />}
-        {isLastStep && <ForthStep />}
+        {step === 3 && <AddOns plan={plan} />}
+        {isLastStep && <Summary />}
         {isSubmitted && <ThankYou />}
       </Content>
     </AppWrapper>

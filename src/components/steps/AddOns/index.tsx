@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Plan } from "../../../types";
 import Checkbox from "./Checkbox";
 import Option from "./Option";
 
@@ -17,7 +18,16 @@ const options = [
   },
 ];
 
-export default function AddOns() {
+const mapAddOnPrice = {
+  Monthly: [1, 2, 2],
+  Yearly: [10, 20, 20],
+};
+
+type Props = {
+  plan: Plan;
+};
+
+export default function AddOns({ plan }: Props) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([
     "Online service",
   ]);
@@ -34,16 +44,19 @@ export default function AddOns() {
     });
   };
 
+  // TODO Option needs to be refactored
   return (
-    <div className="thirdStep">
-      {options.map(({ title, subtitle }) => (
+    <div className="addOns">
+      {options.map(({ title, subtitle }, index) => (
         <Option
           key={title}
           isActive={selectedOptions.includes(title)}
           onChange={() => handleCheck(title)}
           title={title}
           subtitle={subtitle}
-        />
+        >
+          +${mapAddOnPrice[plan][index]}/{plan === "Monthly" ? "mo" : "yr"}
+        </Option>
       ))}
     </div>
   );
