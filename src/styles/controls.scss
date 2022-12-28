@@ -1,0 +1,31 @@
+.button {
+  color: #dcdcdc;
+  font-family: var(--medium);
+  background-color: #022959;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 16px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  &:hover {
+    background-color: #164a8a;
+  }
+}
+.button__wrapper {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.goBack {
+  display: flex;
+  align-items: center;
+  height: 49px;
+  cursor: pointer;
+  color: #9699aa;
+  font-family: var(--medium);
+  &:hover {
+    text-decoration: underline;
+  }
+}

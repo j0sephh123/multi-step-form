@@ -24,8 +24,8 @@ const steps = [
 export default function Header({ step }: Props) {
   return (
     <>
-      <div className="title">{steps[step - 1]["title"]}</div>
-      <div className="subtitle">{steps[step - 1]["subtitle"]}</div>
+      <div className="header__title">{steps[step - 1]["title"]}</div>
+      <div className="header__subtitle">{steps[step - 1]["subtitle"]}</div>
     </>
   );
 }

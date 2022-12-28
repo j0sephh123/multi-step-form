@@ -1,4 +1,4 @@
-export default function ForthStep() {
+export default function Summary() {
   return <div className="forthStep">
     <div className="forthStep__content">
       <div className="forthStep__plan">

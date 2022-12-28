@@ -17,7 +17,7 @@ const options = [
   },
 ];
 
-export default function ThirdStep() {
+export default function AddOns() {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([
     "Online service",
   ]);

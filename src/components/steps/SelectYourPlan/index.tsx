@@ -4,6 +4,7 @@ import ProIcon from "../../../assets/images/icon-pro.svg";
 import Card from "./Card";
 import { useState } from "react";
 import Switch from "./Switch";
+import { Plan } from "../../../types";
 
 const cards = [
   {
@@ -20,19 +21,20 @@ const cards = [
   },
 ];
 
-const options = ["Monthly", "Yearly"] as [string, string];
 
-export default function SecondStep() {
+type Props = {
+  plan: Plan;
+  setPlan: React.Dispatch<React.SetStateAction<Plan>>;
+};
+
+export default function SelectYourPlan({ plan, setPlan }: Props) {
   const [selected, setSelected] = useState<number | null>(1);
-  const [checkedIndex, setIsChecked] = useState(0);
 
-  const toggleCheck = () => setIsChecked((c) => (c === 1 ? 0 : 1));
-
-  console.log(checkedIndex);
+  const togglePlan = () => setPlan((c) => c === 'Monthly' ? 'Yearly' : 'Monthly');
 
   return (
     <>
-      <div className="cards">
+      <div className="selectYourPlan">
         {cards.map((card, index) => (
           <Card
             onClick={() => setSelected(index)}
@@ -42,9 +44,8 @@ export default function SecondStep() {
         ))}
       </div>
       <Switch
-        options={options}
-        onClick={toggleCheck}
-        checkedIndex={checkedIndex}
+        onClick={togglePlan}
+        plan={plan}
       />
     </>
   );

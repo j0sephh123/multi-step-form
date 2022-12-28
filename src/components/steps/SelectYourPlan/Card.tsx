@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 type Props = {
   icon: string;
   label: string;
@@ -7,7 +5,7 @@ type Props = {
   onClick: () => void;
 };
 
-export default function Card({ icon, label, isActive,onClick }: Props) {
+export default function Card({ icon, label, isActive, onClick }: Props) {
   return (
     <div onClick={onClick} className={`card ${isActive ? "isActive" : ""}`}>
       <img width={40} src={icon} />

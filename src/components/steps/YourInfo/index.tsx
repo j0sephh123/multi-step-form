@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import Field from "../../Field";
 
-export default function FirstStep() {
+export default function YourInfo() {
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);

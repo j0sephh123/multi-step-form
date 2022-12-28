@@ -1,18 +1,21 @@
 import { useState } from "react";
-import AppWrapper from "./components/AppWrapper";
-import Content from "./components/Content";
+import AppWrapper from "./components/wrappers/AppWrapper";
+import Content from "./components/wrappers/Content";
 import Controls from "./components/Controls";
-
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import FirstStep from "./components/steps/First";
-import ForthStep from "./components/steps/Forth";
-import SecondStep from "./components/steps/Second";
+import FirstStep from "./components/steps/YourInfo";
+import ForthStep from "./components/steps/Summary";
+import SelectYourPlan from "./components/steps/SelectYourPlan";
 import ThankYou from "./components/steps/ThankYou";
-import ThirdStep from "./components/steps/Third";
+import ThirdStep from "./components/steps/AddOns";
+import { Plan } from "./types";
 
 function App() {
   const [step, setStep] = useState(4);
+  const [plan, setPlan] = useState<Plan>('Monthly');
+  console.log(plan);
+  
   // const [values, setValues] = useState<any>(null);
 
   const handleNext = () => {
@@ -41,7 +44,7 @@ function App() {
   const isFirstStep = step === 1;
   const isLastStep = step === 4;
 
-  const isSubmitted = true;
+  const isSubmitted = false;
 
   return (
     <AppWrapper>
@@ -56,16 +59,12 @@ function App() {
           />
         }
       >
-        <div className="content__wrapper">
-          <div className="content">
-            {!isSubmitted && <Header step={step} />}
-            {/* {isFirstStep && <FirstStep />}
-            {step === 2 && <SecondStep />}
-            {step === 3 && <ThirdStep />}
-            {isLastStep && <ForthStep />} */}
-            {isSubmitted && <ThankYou/>}
-          </div>
-        </div>
+        {!isSubmitted && <Header step={step} />}
+        {isFirstStep && <FirstStep />}
+        {step === 2 && <SelectYourPlan plan={plan} setPlan={setPlan} />}
+        {step === 3 && <ThirdStep />}
+        {isLastStep && <ForthStep />}
+        {isSubmitted && <ThankYou />}
       </Content>
     </AppWrapper>
   );
