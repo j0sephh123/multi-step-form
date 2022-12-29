@@ -2,14 +2,20 @@ import { PropsWithChildren } from "react";
 
 type Props = {
   name: string;
+  hasError: boolean;
 } & PropsWithChildren;
 
-export default function Field({ children, name }: Props) {
+// Red Errors
+
+export default function Field({ children, name, hasError }: Props) {
   return (
     <div className="field">
-      <label className="label" htmlFor={name}>
-        {name}
-      </label>
+      <div className="field__label">
+        <label className="field__label--name" htmlFor={name}>
+          {name}
+        </label>
+        {hasError && <div className="field__label--error">error</div>}
+      </div>
       {children}
     </div>
   );

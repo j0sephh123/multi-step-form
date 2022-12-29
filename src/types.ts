@@ -1,1 +1,1 @@
-export type Plan = "Monthly" | "Yearly"
+export type Billing = "Monthly" | "Yearly"

@@ -1,8 +1,8 @@
 import { PropsWithChildren } from "react";
-import { Plan } from "../../../types";
+import { Billing } from "../../../types";
 
 type Props = {
-  plan: Plan;
+  billing: Billing;
   onClick: () => void;
 };
 
@@ -20,15 +20,15 @@ const SwitchLabel = ({ children, isChecked }: SwitchLabelProps) => (
   </div>
 );
 
-export default function Switch({ plan, onClick }: Props) {
+export default function Switch({ billing, onClick }: Props) {
   return (
     <div className="switchWrapper">
-      <SwitchLabel isChecked={plan === "Monthly"}>Monthly</SwitchLabel>
+      <SwitchLabel isChecked={billing === "Monthly"}>Monthly</SwitchLabel>
       <label className="switch">
-        <input onChange={onClick} type="checkbox" checked={plan === "Yearly"} />
+        <input onChange={onClick} type="checkbox" checked={billing === "Yearly"} />
         <span className="slider round"></span>
       </label>
-      <SwitchLabel isChecked={plan === "Yearly"}>Yearly</SwitchLabel>
+      <SwitchLabel isChecked={billing === "Yearly"}>Yearly</SwitchLabel>
     </div>
   );
 }

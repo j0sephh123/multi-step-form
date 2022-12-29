@@ -4,7 +4,7 @@ import ProIcon from "../../../assets/images/icon-pro.svg";
 import Card from "./Card";
 import { useState } from "react";
 import Switch from "./Switch";
-import { Plan } from "../../../types";
+import { Billing } from "../../../types";
 
 const cards = [
   {
@@ -27,15 +27,15 @@ const mapPlanPrice = {
 };
 
 type Props = {
-  plan: Plan;
-  setPlan: React.Dispatch<React.SetStateAction<Plan>>;
+  billing: Billing;
+  setBilling: React.Dispatch<React.SetStateAction<Billing>>;
 };
 
-export default function SelectYourPlan({ plan, setPlan }: Props) {
+export default function SelectYourPlan({ billing, setBilling }: Props) {
   const [selected, setSelected] = useState<number | null>(1);
 
   const togglePlan = () =>
-    setPlan((c) => (c === "Monthly" ? "Yearly" : "Monthly"));
+  setBilling((c) => (c === "Monthly" ? "Yearly" : "Monthly"));
 
   return (
     <>
@@ -46,11 +46,11 @@ export default function SelectYourPlan({ plan, setPlan }: Props) {
             isActive={index === selected}
             {...card}
           >
-            ${mapPlanPrice[plan][index]}/{plan === "Monthly" ? "mo" : "yr"}
+            ${mapPlanPrice[billing][index]}/{billing === "Monthly" ? "mo" : "yr"}
           </Card>
         ))}
       </div>
-      <Switch onClick={togglePlan} plan={plan} />
+      <Switch onClick={togglePlan} billing={billing} />
     </>
   );
 }

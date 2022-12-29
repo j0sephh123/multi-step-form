@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AppWrapper from "./components/wrappers/AppWrapper";
 import Content from "./components/wrappers/Content";
 import Controls from "./components/Controls";
@@ -9,39 +9,35 @@ import Summary from "./components/steps/Summary";
 import SelectYourPlan from "./components/steps/SelectYourPlan";
 import ThankYou from "./components/steps/ThankYou";
 import AddOns from "./components/steps/AddOns";
-import { Plan } from "./types";
+import { Billing } from "./types";
 
 function App() {
-  const [step, setStep] = useState(4);
-  const [plan, setPlan] = useState<Plan>("Monthly");
+  const [step, setStep] = useState(1);
+  const [billing, setBilling] = useState<Billing>("Monthly");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  console.log(plan);
+  const [shouldGetValues, setShouldGetValues] = useState(false);
+
+  const valuesRef = useRef({ yourInfo: null });
 
   // const [values, setValues] = useState<any>(null);
 
   const handleNext = () => {
-    // if (!nameRef.current || !emailRef.current || !phoneRef.current) {
-    //   return;
-    // }
+    if (step === 1) {
+      console.log("doing validation of inputs...");
+      console.log("TODO add inputs to a global object");
+      setShouldGetValues(true);
+    }
 
-    // const values = {
-    //   name: nameRef.current.value,
-    //   email: emailRef.current.value,
-    //   phone: phoneRef.current.value,
-    // };
-
-    // nameRef.current.value = "";
-    // emailRef.current.value = "";
-    // phoneRef.current.value = "";
-
+    if (step === 2) {
+    }
     // setValues(values);
-    setStep((prevStep) => {
-      if (prevStep === 4) {
-        setIsSubmitted(true);
-        return prevStep;
-      }
-      return prevStep + 1;
-    });
+    // setStep((prevStep) => {
+    //   if (prevStep === 4) {
+    //     setIsSubmitted(true);
+    //     return prevStep;
+    //   }
+    //   return prevStep + 1;
+    // });
   };
 
   const handleGoBack = () => setStep((prevStep) => prevStep - 1);
@@ -52,6 +48,14 @@ function App() {
   const isLastStep = step === 4;
 
   const handleChangeClick = () => setStep(2);
+
+  const getYourInfo = (values: any) => {
+    console.log(values);
+    // console.log(values);
+    // valuesRef.current.yourInfo = values;
+    // setShouldGetValues(false);
+    // setStep(2);
+  };
 
   return (
     <AppWrapper>
@@ -69,9 +73,13 @@ function App() {
         }
       >
         {!isSubmitted && <Header step={step} />}
-        {isFirstStep && <YourInfo />}
-        {step === 2 && <SelectYourPlan plan={plan} setPlan={setPlan} />}
-        {step === 3 && <AddOns plan={plan} />}
+        {isFirstStep && (
+          <YourInfo shouldGetValues={shouldGetValues} getValues={getYourInfo} />
+        )}
+        {step === 2 && (
+          <SelectYourPlan billing={billing} setBilling={setBilling} />
+        )}
+        {step === 3 && <AddOns billing={billing} />}
         {isLastStep && !isSubmitted && (
           <Summary onChangeClick={handleChangeClick} />
         )}

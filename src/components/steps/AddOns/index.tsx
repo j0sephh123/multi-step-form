@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plan } from "../../../types";
+import { Billing } from "../../../types";
 import Option from "./Option";
 
 const options = [
@@ -23,10 +23,10 @@ const mapAddOnPrice = {
 };
 
 type Props = {
-  plan: Plan;
+  billing: Billing;
 };
 
-export default function AddOns({ plan }: Props) {
+export default function AddOns({ billing }: Props) {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([
     "Online service",
   ]);
@@ -54,7 +54,7 @@ export default function AddOns({ plan }: Props) {
           title={title}
           subtitle={subtitle}
         >
-          +${mapAddOnPrice[plan][index]}/{plan === "Monthly" ? "mo" : "yr"}
+          +${mapAddOnPrice[billing][index]}/{billing === "Monthly" ? "mo" : "yr"}
         </Option>
       ))}
     </div>
